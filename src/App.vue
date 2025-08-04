@@ -1,5 +1,5 @@
 <template>
-  <img alt="Swift logo" src="./assets/logo.jpeg">
+  <img alt="Swift logo" src="./assets/logo2.jpeg" width="200" height="200">
   <HelloWorld msg="I luv U, Taylor!!!"/>
   <router-view/>
 </template>
