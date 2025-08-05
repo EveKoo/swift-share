@@ -10,6 +10,7 @@ const SwiftUpload = () => import('@/views/swift/SwiftUpload.vue')
 const SwiftDetail = () => import('@/views/swift/SwiftDetail.vue')
 const SwiftSearch = () => import('@/views/swift/SwiftSearch.vue')
 const SwiftLogin = () => import('@/views/swift/SwiftLogin.vue')
+const SwiftRegister = () => import('@/views/swift/SwiftRegister.vue')
 
 // SwiftShare路由配置
 const swiftRoutes = [
@@ -114,6 +115,16 @@ const swiftRoutes = [
         component: SwiftLogin,
         meta: {
             title: '登录 - SwiftShare',
+            requestAuth: false,
+            keepAlive: false
+        }
+    },
+    {
+        path: '/register',
+        name: 'swift-register',
+        component: SwiftRegister,
+        meta: {
+            title: '注册 - SwiftShare',
             requestAuth: false,
             keepAlive: false
         }

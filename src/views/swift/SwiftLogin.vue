@@ -92,7 +92,7 @@ export default {
         ChatDotRound,
         Message
     },
-    emits: ['login-success'],
+    emits: ['login-success', 'switch-to-register'],
     setup(props, { emit }) {
         const loginFormRef = ref(null)
         const isLoading = ref(false)
@@ -152,7 +152,7 @@ export default {
         }
 
         const goToRegister = () => {
-            ElMessage.info('注册功能即将上线，敬请期待！')
+            emit('switch-to-register')
         }
 
         return {

@@ -206,21 +206,38 @@
                 </section>
             </div>
         </div>
+
+        <!-- 音乐播放器 -->
+        <MusicPlayer 
+            v-model="showMusicPlayer"
+            :album="currentAlbum"
+            :song="currentSong"
+            @track-end="onTrackEnd"
+        />
+
+        <!-- 视频播放器 -->
+        <VideoPlayer 
+            v-model="showVideoPlayer"
+            :video="currentVideo"
+            @video-end="onVideoEnd"
+        />
     </div>
 </template>
 
 <script>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { 
     VideoPlay, 
     Plus, 
     Star, 
     MoreFilled, 
-    ChatDotRound, 
-    Share 
+    ChatDotRound,
+    Share
 } from '@element-plus/icons-vue'
-import { ref} from 'vue'
-import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
+import MusicPlayer from '@/components/MusicPlayer.vue'
+import VideoPlayer from '@/components/VideoPlayer.vue'
 
 export default {
     name: 'SwiftHome',
@@ -230,10 +247,17 @@ export default {
         Star,
         MoreFilled,
         ChatDotRound,
-        Share
+        Share,
+        MusicPlayer,
+        VideoPlayer
     },
     setup() {
         const router = useRouter()
+        const showMusicPlayer = ref(false)
+        const showVideoPlayer = ref(false)
+        const currentAlbum = ref(null)
+        const currentSong = ref(null)
+        const currentVideo = ref(null)
         
         // 响应式数据
         const floatingNotes = ref(['🎵', '🎤', '💕', '🎸', '🎭'])
@@ -269,31 +293,40 @@ export default {
             {
                 id: 1,
                 title: 'Taylor Swift - Cruel Summer (Live)',
-                description: 'Eras Tour 现场版精彩表演，感受现场的热烈氛围',
-                cover: 'https://via.placeholder.com/300x200/e91e63/ffffff?text=Cruel+Summer+Live',
-                views: '1.2M',
-                likes: '89K',
-                comments: '2.3K',
-                badge: 'HOT'
+                description: 'Eras Tour 现场版精彩表演，感受现场的热烈氛围。霉霉的精彩演出让所有观众都为之疯狂！',
+                cover: '/images/videos/cruel-summer-live.jpg',
+                thumbnail: 'https://via.placeholder.com/300x200/e91e63/ffffff?text=Cruel+Summer+Live',
+                views: 1200000,
+                likes: 89000,
+                comments: 2300,
+                badge: 'HOT',
+                url: 'https://player.bilibili.com/player.html?isOutside=true&aid=749723677&bvid=BV1MC4y1c7Kv&cid=1366886152&p=1',
+                tags: ['Live', 'Eras Tour', 'Cruel Summer']
             },
             {
                 id: 2,
                 title: 'Midnights Album Review',
-                description: '深度解析霉霉最新专辑，探索每首歌背后的故事',
+                description: '深度解析霉霉最新专辑，探索每首歌背后的故事。从创作灵感到音乐制作，全面了解 Midnights 的魅力。',
                 cover: 'https://via.placeholder.com/300x200/9c27b0/ffffff?text=Midnights+Review',
-                views: '856K',
-                likes: '67K',
-                comments: '1.8K',
-                badge: 'NEW'
+                thumbnail: 'https://via.placeholder.com/300x200/9c27b0/ffffff?text=Midnights+Review',
+                views: 856000,
+                likes: 67000,
+                comments: 1800,
+                badge: 'NEW',
+                url: '/videos/midnights-review.mp4',
+                tags: ['Review', 'Midnights', 'Analysis']
             },
             {
                 id: 3,
                 title: 'Eras Tour Behind the Scenes',
-                description: '演唱会幕后花絮，了解舞台背后的精彩瞬间',
+                description: '演唱会幕后花絮，了解舞台背后的精彩瞬间。从排练到演出，见证霉霉的敬业精神。',
                 cover: 'https://via.placeholder.com/300x200/ff9800/ffffff?text=Eras+Tour+BTS',
-                views: '2.1M',
-                likes: '156K',
-                comments: '4.2K'
+                thumbnail: 'https://via.placeholder.com/300x200/ff9800/ffffff?text=Eras+Tour+BTS',
+                views: 2100000,
+                likes: 156000,
+                comments: 4200,
+                url: '/videos/eras-tour-bts.mp4',
+                tags: ['Behind the Scenes', 'Eras Tour', 'Backstage']
             }
         ])
 
@@ -304,15 +337,19 @@ export default {
                 artist: 'Taylor Swift',
                 album: 'Lover',
                 cover: 'https://via.placeholder.com/80x80/e91e63/ffffff?text=CS',
-                duration: '3:28'
+                duration: '3:28',
+                durationSeconds: 208,
+                url: '/audio/cruel-summer.mp3'
             },
             {
                 id: 2,
                 title: 'Anti-Hero',
                 artist: 'Taylor Swift',
                 album: 'Midnights',
-                cover: 'https://via.placeholder.com/80x80/9c27b0/ffffff?text=AH',
-                duration: '3:21'
+                cover: '/images/music/anti-hero.jpeg',
+                duration: '3:21',
+                durationSeconds: 201,
+                url: '/audio/anti-hero.mp3'
             },
             {
                 id: 3,
@@ -320,7 +357,9 @@ export default {
                 artist: 'Taylor Swift',
                 album: 'Folklore',
                 cover: 'https://via.placeholder.com/80x80/ff9800/ffffff?text=CG',
-                duration: '3:59'
+                duration: '3:59',
+                durationSeconds: 239,
+                url: '/audio/cardigan.mp3'
             },
             {
                 id: 4,
@@ -328,7 +367,9 @@ export default {
                 artist: 'Taylor Swift',
                 album: '1989',
                 cover: 'https://via.placeholder.com/80x80/2196f3/ffffff?text=SIO',
-                duration: '3:39'
+                duration: '3:39',
+                durationSeconds: 219,
+                url: '/audio/shake-it-off.mp3'
             }
         ])
 
@@ -410,11 +451,61 @@ export default {
         }
 
         const viewDetail = (id) => {
-            router.push(`/detail/${id}`)
+            // 假设 trendingContent 中的 item 是视频
+            const item = trendingContent.value.find(item => item.id === id);
+            if (item) {
+                currentVideo.value = {
+                    id: item.id,
+                    title: item.title,
+                    cover: item.cover,
+                    url: item.url // 假设视频URL在 trendingContent 中
+                };
+                showVideoPlayer.value = true;
+                ElMessage.success(`正在播放: ${item.title}`);
+            } else {
+                // 如果 item 不是视频，则跳转到详情页
+                router.push(`/detail/${id}`);
+            }
         }
 
         const playMusic = (song) => {
+            // 创建专辑对象用于播放器
+            currentAlbum.value = {
+                id: song.albumId || 1,
+                name: song.album,
+                year: song.year || '2024',
+                songs: 1,
+                cover: song.cover
+            }
+            
+            // 设置当前歌曲
+            currentSong.value = {
+                id: song.id,
+                title: song.title,
+                artist: song.artist,
+                album: song.album,
+                cover: song.cover,
+                duration: song.durationSeconds || 200,
+                url: song.url
+            }
+            
+            // 显示音乐播放器
+            showMusicPlayer.value = true
+            
             ElMessage.success(`正在播放: ${song.title}`)
+        }
+
+        const onTrackEnd = (track) => {
+            ElMessage.info(`歌曲播放完成: ${track.title}`)
+        }
+
+        const onVideoEnd = () => {
+            ElMessage.info('视频播放完成');
+            // 关闭视频播放器时暂停音乐播放
+            if (showMusicPlayer.value) {
+                showMusicPlayer.value = false;
+                ElMessage.info('已暂停音乐播放');
+            }
         }
 
         const addToPlaylist = (song) => {
@@ -476,6 +567,11 @@ export default {
             latestNews,
             exploreMusic,
             joinCommunity,
+            showMusicPlayer,
+            showVideoPlayer,
+            currentAlbum,
+            currentSong,
+            currentVideo,
             goToPage,
             viewMore,
             viewDetail,
@@ -486,7 +582,9 @@ export default {
             likePost,
             commentPost,
             sharePost,
-            readNews
+            readNews,
+            onTrackEnd,
+            onVideoEnd
         }
     }
 }

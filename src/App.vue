@@ -26,7 +26,10 @@
       :close-on-click-modal="false"
       :close-on-press-escape="false"
     >
-      <SwiftLogin @login-success="handleLoginSuccess" />
+      <SwiftLogin 
+        @login-success="handleLoginSuccess"
+        @switch-to-register="switchToRegister"
+      />
     </el-dialog>
 
     <!-- 注册模态框 -->
@@ -123,6 +126,12 @@ export default {
             showLogin.value = true
         }
 
+        // 切换到注册
+        const switchToRegister = () => {
+            showLogin.value = false
+            showRegister.value = true
+        }
+
     // 监听滚动事件
     const handleScroll = () => {
       scrollY.value = window.scrollY
@@ -139,16 +148,17 @@ export default {
       window.removeEventListener('scroll', handleScroll)
     })
 
-            return {
-            showLogin,
-            showRegister,
-            isHeaderFixed,
-            cachedPages,
-            showLoginModal,
-            showRegisterModal,
-            handleLoginSuccess,
-            handleRegisterSuccess,
-            switchToLogin
+                    return {
+          showLogin,
+          showRegister,
+          isHeaderFixed,
+          cachedPages,
+          showLoginModal,
+          showRegisterModal,
+          handleLoginSuccess,
+          handleRegisterSuccess,
+          switchToLogin,
+          switchToRegister
         }
   }
 }

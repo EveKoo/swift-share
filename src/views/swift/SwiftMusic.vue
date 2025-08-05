@@ -28,6 +28,13 @@
                 </div>
             </div>
         </div>
+
+        <!-- 音乐播放器 -->
+        <MusicPlayer 
+            v-model="showMusicPlayer"
+            :album="currentAlbum"
+            @track-end="onTrackEnd"
+        />
     </div>
 </template>
 
@@ -35,13 +42,18 @@
 import { ref } from 'vue'
 import { VideoPlay } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
+import MusicPlayer from '@/components/MusicPlayer.vue'
 
 export default {
     name: 'SwiftMusic',
     components: {
-        VideoPlay
+        VideoPlay,
+        MusicPlayer
     },
     setup() {
+        const showMusicPlayer = ref(false)
+        const currentAlbum = ref(null)
+
         const albums = ref([
             {
                 id: 1,
@@ -74,12 +86,21 @@ export default {
         ])
 
         const playAlbum = (album) => {
+            currentAlbum.value = album
+            showMusicPlayer.value = true
             ElMessage.success(`正在播放专辑: ${album.name}`)
+        }
+
+        const onTrackEnd = (track) => {
+            ElMessage.info(`歌曲播放完成: ${track.title}`)
         }
 
         return {
             albums,
-            playAlbum
+            showMusicPlayer,
+            currentAlbum,
+            playAlbum,
+            onTrackEnd
         }
     }
 }

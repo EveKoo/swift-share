@@ -99,22 +99,14 @@
             </el-button>
         </div>
 
-        <!-- 视频播放器模态框 -->
-        <el-dialog
+        <!-- 视频播放器 -->
+        <VideoPlayer 
             v-model="showVideoPlayer"
-            title="视频播放"
-            width="80%"
-            :before-close="closeVideoPlayer"
-            class="video-player-dialog"
-        >
-            <div class="video-player-content">
-                <div class="video-placeholder">
-                    <el-icon size="64"><VideoPlay /></el-icon>
-                    <p>视频播放器</p>
-                    <p class="video-title">{{ currentVideo?.title }}</p>
-                </div>
-            </div>
-        </el-dialog>
+            :video="currentVideo"
+            @video-end="onVideoEnd"
+        />
+
+
     </div>
 </template>
 
@@ -128,6 +120,7 @@ import {
     ChatDotRound 
 } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
+import VideoPlayer from '@/components/VideoPlayer.vue'
 
 export default {
     name: 'SwiftVideos',
@@ -136,7 +129,8 @@ export default {
         VideoPlay,
         View,
         Star,
-        ChatDotRound
+        ChatDotRound,
+        VideoPlayer
     },
     setup() {
         const searchKeyword = ref('')
@@ -154,12 +148,13 @@ export default {
                 description: 'Official music video for "Cruel Summer" from the Lover album',
                 thumbnail: 'https://via.placeholder.com/320x180/e91e63/ffffff?text=Cruel+Summer+MV',
                 duration: '3:28',
-                views: '2.1M',
-                likes: '156K',
-                comments: '8.9K',
+                views: 2100000,
+                likes: 156000,
+                comments: 8900,
                 category: 'mv',
                 tags: ['MV', 'Lover', 'Official'],
-                badge: 'NEW'
+                badge: 'NEW',
+                url: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4'
             },
             {
                 id: 2,
@@ -167,11 +162,12 @@ export default {
                 description: 'Taylor Swift performing "Anti-Hero" during the Eras Tour',
                 thumbnail: 'https://via.placeholder.com/320x180/9c27b0/ffffff?text=Anti-Hero+Live',
                 duration: '4:12',
-                views: '1.8M',
-                likes: '234K',
-                comments: '12.3K',
+                views: 1800000,
+                likes: 234000,
+                comments: 12300,
                 category: 'concert',
-                tags: ['Live', 'Eras Tour', 'Anti-Hero']
+                tags: ['Live', 'Eras Tour', 'Anti-Hero'],
+                url: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4'
             },
             {
                 id: 3,
@@ -291,6 +287,10 @@ export default {
             ElMessage.success(`正在播放: ${video.title}`)
         }
 
+        const onVideoEnd = (video) => {
+            ElMessage.info(`视频播放完成: ${video.title}`)
+        }
+
         const closeVideoPlayer = () => {
             showVideoPlayer.value = false
             currentVideo.value = null
@@ -336,7 +336,8 @@ export default {
             sortVideos,
             playVideo,
             closeVideoPlayer,
-            loadMore
+            loadMore,
+            onVideoEnd
         }
     }
 }
