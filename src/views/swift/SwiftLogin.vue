@@ -84,7 +84,7 @@
 <script>
 import { ref, reactive } from 'vue'
 import { ChatDotRound, Message } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { useUserStore } from '@/stores/user'
 
 export default {
     name: 'SwiftLogin',
@@ -94,8 +94,8 @@ export default {
     },
     emits: ['login-success', 'switch-to-register'],
     setup(props, { emit }) {
+        const userStore = useUserStore()
         const loginFormRef = ref(null)
-        const isLoading = ref(false)
         const rememberMe = ref(false)
 
         const loginForm = reactive({
@@ -105,12 +105,11 @@ export default {
 
         const loginRules = {
             username: [
-                { required: true, message: '请输入用户名或邮箱', trigger: 'blur' },
-                { min: 3, message: '用户名至少3个字符', trigger: 'blur' }
+                { required: true, message: '请输入用户名或邮箱', trigger: 'blur' }
             ],
             password: [
                 { required: true, message: '请输入密码', trigger: 'blur' },
-                { min: 6, message: '密码至少6个字符', trigger: 'blur' }
+                { min: 6, message: '密码长度不能少于6位', trigger: 'blur' }
             ]
         }
 
@@ -119,35 +118,14 @@ export default {
 
             try {
                 await loginFormRef.value.validate()
-                isLoading.value = true
-
-                // 模拟登录请求
-                await new Promise(resolve => setTimeout(resolve, 1500))
-
-                // 模拟登录成功
-                const mockUser = {
-                    id: 1,
-                    username: loginForm.username,
-                    avatar: 'https://via.placeholder.com/40x40/e91e63/ffffff?text=TS',
-                    nickname: 'Swiftie_Lover'
+                
+                const result = await userStore.login(loginForm)
+                
+                if (result.success) {
+                    emit('login-success')
                 }
-
-                // 保存登录状态
-                localStorage.setItem('swift_token', 'mock_token_' + Date.now())
-                localStorage.setItem('swift_user', JSON.stringify(mockUser))
-
-                if (rememberMe.value) {
-                    localStorage.setItem('swift_remember', 'true')
-                }
-
-                ElMessage.success('登录成功！欢迎回到 SwiftShare')
-                emit('login-success', mockUser)
-
             } catch (error) {
-                console.error('登录失败:', error)
-                ElMessage.error('登录失败，请检查用户名和密码')
-            } finally {
-                isLoading.value = false
+                console.error('登录验证失败:', error)
             }
         }
 
@@ -159,8 +137,8 @@ export default {
             loginFormRef,
             loginForm,
             loginRules,
-            isLoading,
             rememberMe,
+            isLoading: userStore.loading,
             handleLogin,
             goToRegister
         }

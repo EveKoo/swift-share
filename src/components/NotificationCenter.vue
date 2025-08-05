@@ -27,7 +27,7 @@
 
 <script>
 import { computed } from 'vue'
-import { useStore } from 'vuex'
+import { useAppStore } from '@/stores'
 import { 
     CircleCheckFilled, 
     CircleCloseFilled, 
@@ -46,12 +46,12 @@ export default {
         Close
     },
     setup() {
-        const store = useStore()
+        const appStore = useAppStore()
         
-        const notifications = computed(() => store.getters.notifications)
+        const notifications = computed(() => appStore.notifications)
         
         const removeNotification = (id) => {
-            store.commit('removeNotification', id)
+            appStore.removeNotification(id)
         }
         
         const formatTime = (timestamp) => {

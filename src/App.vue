@@ -46,10 +46,10 @@
       />
     </el-dialog>
 
-        <!-- 全局加载状态 -->
-    <div v-if="$store.getters.isLoading" class="global-loading">
-        <el-loading-spinner />
-        <p>加载中...</p>
+    <!-- 全局加载状态 -->
+    <div v-if="appStore.loading" class="global-loading">
+        <el-loading />
+        <p>{{ appStore.loadingText }}</p>
     </div>
 
     <!-- 返回顶部按钮 -->
@@ -67,11 +67,11 @@
 <script>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { useStore } from 'vuex'
 import SwiftHeader from '@/views/swift/SwiftHeader.vue'
 import SwiftLogin from '@/views/swift/SwiftLogin.vue'
 import SwiftRegister from '@/views/swift/SwiftRegister.vue'
 import NotificationCenter from '@/components/NotificationCenter.vue'
+import { useAppStore, useUserStore } from '@/stores'
 import { ElMessage } from 'element-plus'
 
 export default {
@@ -82,84 +82,85 @@ export default {
     SwiftRegister,
     NotificationCenter
   },
-      setup() {
-        const route = useRoute()
-        const store = useStore()
-        const showLogin = ref(false)
-        const showRegister = ref(false)
-        const isHeaderFixed = ref(false)
-        const scrollY = ref(0)
+  setup() {
+    const route = useRoute()
+    const appStore = useAppStore()
+    const userStore = useUserStore()
+    
+    const showLogin = ref(false)
+    const showRegister = ref(false)
+    const isHeaderFixed = ref(false)
+    const scrollY = ref(0)
 
-    // 需要缓存的页面
-    const cachedPages = computed(() => {
-      const pages = ['SwiftHome', 'SwiftMusic', 'SwiftVideos', 'SwiftCommunity', 'SwiftNews']
-      return pages.filter(() => route.meta?.keepAlive)
-    })
+      // 需要缓存的页面
+      const cachedPages = computed(() => {
+        const pages = ['SwiftHome', 'SwiftMusic', 'SwiftVideos', 'SwiftCommunity', 'SwiftNews']
+        return pages.filter(() => route.meta?.keepAlive)
+      })
 
-    // 显示登录模态框
-    const showLoginModal = () => {
-      showLogin.value = true
-    }
+      // 显示登录模态框
+      const showLoginModal = () => {
+        showLogin.value = true
+      }
 
-    // 显示注册模态框
-    const showRegisterModal = () => {
-      showRegister.value = true
-    }
+      // 显示注册模态框
+      const showRegisterModal = () => {
+        showRegister.value = true
+      }
 
-            // 处理登录成功
-        const handleLoginSuccess = (user) => {
-            showLogin.value = false
-            store.dispatch('login', user)
-            ElMessage.success('登录成功！欢迎来到 SwiftShare')
-        }
+      // 处理登录成功
+      const handleLoginSuccess = () => {
+        showLogin.value = false
+        ElMessage.success('登录成功！欢迎回到 SwiftShare')
+      }
 
-        // 处理注册成功
-        const handleRegisterSuccess = (userData) => {
-            showRegister.value = false
-            store.dispatch('login', userData)
-            ElMessage.success('注册成功！欢迎来到 SwiftShare')
-        }
+      // 处理注册成功
+      const handleRegisterSuccess = () => {
+        showRegister.value = false
+        showLogin.value = true
+        ElMessage.success('注册成功！请登录您的账户')
+      }
 
-        // 切换到登录
-        const switchToLogin = () => {
-            showRegister.value = false
-            showLogin.value = true
-        }
+      // 切换到注册
+      const switchToRegister = () => {
+        showLogin.value = false
+        showRegister.value = true
+      }
 
-        // 切换到注册
-        const switchToRegister = () => {
-            showLogin.value = false
-            showRegister.value = true
-        }
+      // 切换到登录
+      const switchToLogin = () => {
+        showRegister.value = false
+        showLogin.value = true
+      }
 
-    // 监听滚动事件
-    const handleScroll = () => {
-      scrollY.value = window.scrollY
-      isHeaderFixed.value = scrollY.value > 100
-    }
+      // 监听滚动事件
+      const handleScroll = () => {
+        scrollY.value = window.scrollY
+        isHeaderFixed.value = scrollY.value > 100
+      }
 
-            // 生命周期
-        onMounted(() => {
-            window.addEventListener('scroll', handleScroll)
-            store.dispatch('initApp')
-        })
+      onMounted(() => {
+        window.addEventListener('scroll', handleScroll)
+      })
 
-    onUnmounted(() => {
-      window.removeEventListener('scroll', handleScroll)
-    })
+      onUnmounted(() => {
+        window.removeEventListener('scroll', handleScroll)
+      })
 
-                    return {
-          showLogin,
-          showRegister,
-          isHeaderFixed,
-          cachedPages,
-          showLoginModal,
-          showRegisterModal,
-          handleLoginSuccess,
-          handleRegisterSuccess,
-          switchToLogin,
-          switchToRegister
-        }
+      return {
+        appStore,
+        userStore,
+        showLogin,
+        showRegister,
+        isHeaderFixed,
+        cachedPages,
+        showLoginModal,
+        showRegisterModal,
+        handleLoginSuccess,
+        handleRegisterSuccess,
+        switchToRegister,
+        switchToLogin
+      }
   }
 }
 </script>

@@ -189,7 +189,7 @@ export default {
                 title: 'Cruel Summer',
                 artist: 'Taylor Swift',
                 duration: 178,
-                cover: 'https://via.placeholder.com/300x300/9c27b0/ffffff?text=Cruel+Summer',
+                cover: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzljMjdiMCIvPjx0ZXh0IHg9IjE1MCIgeT0iMTUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Q3J1ZWwgU3VtbWVyPC90ZXh0Pjwvc3ZnPg==',
                 isFavorite: true,
                 url: '/audio/cruel-summer.mp3'
             },
@@ -198,7 +198,7 @@ export default {
                 title: 'Cardigan',
                 artist: 'Taylor Swift',
                 duration: 239,
-                cover: 'https://via.placeholder.com/300x300/ff9800/ffffff?text=Cardigan',
+                cover: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2ZmOTgwMCIvPjx0ZXh0IHg9IjE1MCIgeT0iMTUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Q2FyZGlnYW48L3RleHQ+PC9zdmc+',
                 isFavorite: false,
                 url: '/audio/cardigan.mp3'
             },
@@ -207,7 +207,7 @@ export default {
                 title: 'Lover',
                 artist: 'Taylor Swift',
                 duration: 221,
-                cover: 'https://via.placeholder.com/300x300/2196f3/ffffff?text=Lover',
+                cover: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzIxOTZmMyIvPjx0ZXh0IHg9IjE1MCIgeT0iMTUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+TG92ZXI8L3RleHQ+PC9zdmc+',
                 isFavorite: true,
                 url: '/audio/shake-it-off.mp3'
             }
@@ -235,7 +235,7 @@ export default {
                     title: 'Cruel Summer',
                     artist: 'Taylor Swift',
                     duration: 178,
-                    cover: 'https://via.placeholder.com/300x300/9c27b0/ffffff?text=Cruel+Summer',
+                    cover: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzljMjdiMCIvPjx0ZXh0IHg9IjE1MCIgeT0iMTUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Q3J1ZWwgU3VtbWVyPC90ZXh0Pjwvc3ZnPg==',
                     isFavorite: true,
                     url: '/audio/cruel-summer.mp3'
                 },
@@ -244,7 +244,7 @@ export default {
                     title: 'Cardigan',
                     artist: 'Taylor Swift',
                     duration: 239,
-                    cover: 'https://via.placeholder.com/300x300/ff9800/ffffff?text=Cardigan',
+                    cover: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2ZmOTgwMCIvPjx0ZXh0IHg9IjE1MCIgeT0iMTUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Q2FyZGlnYW48L3RleHQ+PC9zdmc+',
                     isFavorite: false,
                     url: '/audio/cardigan.mp3'
                 },
@@ -253,7 +253,7 @@ export default {
                     title: 'Lover',
                     artist: 'Taylor Swift',
                     duration: 221,
-                    cover: 'https://via.placeholder.com/300x300/2196f3/ffffff?text=Lover',
+                    cover: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzIxOTZmMyIvPjx0ZXh0IHg9IjE1MCIgeT0iMTUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+TG92ZXI8L3RleHQ+PC9zdmc+',
                     isFavorite: true,
                     url: '/audio/shake-it-off.mp3'
                 }

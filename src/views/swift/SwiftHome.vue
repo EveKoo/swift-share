@@ -261,331 +261,331 @@ export default {
         
         // 响应式数据
         const floatingNotes = ref(['🎵', '🎤', '💕', '🎸', '🎭'])
-        
-        const quickNavs = ref([
-            {
-                title: '音乐库',
-                description: '探索霉霉的所有音乐作品',
-                icon: '🎵',
-                path: '/music'
-            },
-            {
-                title: '视频库',
-                description: '观看MV、演唱会、采访等',
-                icon: '🎬',
-                path: '/videos'
-            },
-            {
-                title: '社区',
-                description: '与其他Swiftie交流分享',
-                icon: '💕',
-                path: '/community'
-            },
-            {
-                title: '资讯',
-                description: '获取霉霉最新动态',
-                icon: '📰',
-                path: '/news'
-            }
-        ])
-
-        const trendingContent = ref([
-            {
-                id: 1,
-                title: 'Taylor Swift - Cruel Summer (Live)',
-                description: 'Eras Tour 现场版精彩表演，感受现场的热烈氛围。霉霉的精彩演出让所有观众都为之疯狂！',
-                cover: '/images/videos/cruel-summer-live.jpg',
-                thumbnail: 'https://via.placeholder.com/300x200/e91e63/ffffff?text=Cruel+Summer+Live',
-                views: 1200000,
-                likes: 89000,
-                comments: 2300,
-                badge: 'HOT',
-                url: 'https://player.bilibili.com/player.html?isOutside=true&aid=749723677&bvid=BV1MC4y1c7Kv&cid=1366886152&p=1',
-                tags: ['Live', 'Eras Tour', 'Cruel Summer']
-            },
-            {
-                id: 2,
-                title: 'Midnights Album Review',
-                description: '深度解析霉霉最新专辑，探索每首歌背后的故事。从创作灵感到音乐制作，全面了解 Midnights 的魅力。',
-                cover: 'https://via.placeholder.com/300x200/9c27b0/ffffff?text=Midnights+Review',
-                thumbnail: 'https://via.placeholder.com/300x200/9c27b0/ffffff?text=Midnights+Review',
-                views: 856000,
-                likes: 67000,
-                comments: 1800,
-                badge: 'NEW',
-                url: '/videos/midnights-review.mp4',
-                tags: ['Review', 'Midnights', 'Analysis']
-            },
-            {
-                id: 3,
-                title: 'Eras Tour Behind the Scenes',
-                description: '演唱会幕后花絮，了解舞台背后的精彩瞬间。从排练到演出，见证霉霉的敬业精神。',
-                cover: 'https://via.placeholder.com/300x200/ff9800/ffffff?text=Eras+Tour+BTS',
-                thumbnail: 'https://via.placeholder.com/300x200/ff9800/ffffff?text=Eras+Tour+BTS',
-                views: 2100000,
-                likes: 156000,
-                comments: 4200,
-                url: '/videos/eras-tour-bts.mp4',
-                tags: ['Behind the Scenes', 'Eras Tour', 'Backstage']
-            }
-        ])
-
-        const latestMusic = ref([
-            {
-                id: 1,
-                title: 'Cruel Summer',
-                artist: 'Taylor Swift',
-                album: 'Lover',
-                cover: 'https://via.placeholder.com/80x80/e91e63/ffffff?text=CS',
-                duration: '3:28',
-                durationSeconds: 208,
-                url: '/audio/cruel-summer.mp3'
-            },
-            {
-                id: 2,
-                title: 'Anti-Hero',
-                artist: 'Taylor Swift',
-                album: 'Midnights',
-                cover: '/images/music/anti-hero.jpeg',
-                duration: '3:21',
-                durationSeconds: 201,
-                url: '/audio/anti-hero.mp3'
-            },
-            {
-                id: 3,
-                title: 'Cardigan',
-                artist: 'Taylor Swift',
-                album: 'Folklore',
-                cover: 'https://via.placeholder.com/80x80/ff9800/ffffff?text=CG',
-                duration: '3:59',
-                durationSeconds: 239,
-                url: '/audio/cardigan.mp3'
-            },
-            {
-                id: 4,
-                title: 'Shake It Off',
-                artist: 'Taylor Swift',
-                album: '1989',
-                cover: 'https://via.placeholder.com/80x80/2196f3/ffffff?text=SIO',
-                duration: '3:39',
-                durationSeconds: 219,
-                url: '/audio/shake-it-off.mp3'
-            }
-        ])
-
-        const communityPosts = ref([
-            {
-                id: 1,
-                author: 'Swiftie_Lover',
-                avatar: 'https://via.placeholder.com/40x40/e91e63/ffffff?text=SL',
-                content: '刚刚看了Eras Tour的直播，霉霉的表演太震撼了！每一首歌都让我感动到哭，这就是为什么我爱她！💖✨',
-                time: '2小时前',
-                likes: 234,
-                comments: 45,
-                shares: 12,
-                isLiked: false,
-                tags: ['Eras Tour', 'Live', '感动'],
-                image: 'https://via.placeholder.com/400x200/ff9800/ffffff?text=Eras+Tour+Live'
-            },
-            {
-                id: 2,
-                author: 'Taylor_Fan_2024',
-                avatar: 'https://via.placeholder.com/40x40/9c27b0/ffffff?text=TF',
-                content: 'Midnights专辑循环播放中，每一首都太好听了！特别是Anti-Hero，歌词太戳心了！',
-                time: '4小时前',
-                likes: 156,
-                comments: 23,
-                shares: 8,
-                isLiked: true,
-                tags: ['Midnights', 'Anti-Hero', '循环播放']
-            }
-        ])
-
-        const latestNews = ref([
-            {
-                id: 1,
-                title: 'Taylor Swift宣布新专辑发行计划',
-                summary: '霉霉在社交媒体上宣布了新的音乐计划，粉丝们期待不已...',
-                image: 'https://via.placeholder.com/120x80/e91e63/ffffff?text=News+1',
-                time: '1天前',
-                category: '音乐新闻'
-            },
-            {
-                id: 2,
-                title: 'Eras Tour票房突破10亿美元',
-                summary: 'Taylor Swift的Eras Tour成为史上最成功的巡演之一...',
-                image: 'https://via.placeholder.com/120x80/9c27b0/ffffff?text=News+2',
-                time: '2天前',
-                category: '巡演新闻'
-            }
-        ])
-
-        // 方法
-        const exploreMusic = () => {
-            router.push('/music')
-        }
-
-        const joinCommunity = () => {
-            router.push('/community')
-        }
-
-        const goToPage = (path) => {
-            router.push(path)
-        }
-
-        const viewMore = (type) => {
-            switch (type) {
-                case 'trending':
-                    router.push('/videos')
-                    break
-                case 'music':
-                    router.push('/music')
-                    break
-                case 'community':
-                    router.push('/community')
-                    break
-                case 'news':
-                    router.push('/news')
-                    break
-            }
-        }
-
-        const viewDetail = (id) => {
-            // 假设 trendingContent 中的 item 是视频
-            const item = trendingContent.value.find(item => item.id === id);
-            if (item) {
-                currentVideo.value = {
-                    id: item.id,
-                    title: item.title,
-                    cover: item.cover,
-                    url: item.url // 假设视频URL在 trendingContent 中
-                };
-                showVideoPlayer.value = true;
-                ElMessage.success(`正在播放: ${item.title}`);
-            } else {
-                // 如果 item 不是视频，则跳转到详情页
-                router.push(`/detail/${id}`);
-            }
-        }
-
-        const playMusic = (song) => {
-            // 创建专辑对象用于播放器
-            currentAlbum.value = {
-                id: song.albumId || 1,
-                name: song.album,
-                year: song.year || '2024',
-                songs: 1,
-                cover: song.cover
-            }
             
-            // 设置当前歌曲
-            currentSong.value = {
-                id: song.id,
-                title: song.title,
-                artist: song.artist,
-                album: song.album,
-                cover: song.cover,
-                duration: song.durationSeconds || 200,
-                url: song.url
+            const quickNavs = ref([
+                {
+                    title: '音乐库',
+                    description: '探索霉霉的所有音乐作品',
+                    icon: '🎵',
+                    path: '/music'
+                },
+                {
+                    title: '视频库',
+                    description: '观看MV、演唱会、采访等',
+                    icon: '🎬',
+                    path: '/videos'
+                },
+                {
+                    title: '社区',
+                    description: '与其他Swiftie交流分享',
+                    icon: '💕',
+                    path: '/community'
+                },
+                {
+                    title: '资讯',
+                    description: '获取霉霉最新动态',
+                    icon: '📰',
+                    path: '/news'
+                }
+            ])
+
+            const trendingContent = ref([
+                {
+                    id: 1,
+                    title: 'Taylor Swift - Cruel Summer (Live)',
+                    description: 'Eras Tour 现场版精彩表演，感受现场的热烈氛围。霉霉的精彩演出让所有观众都为之疯狂！',
+                    cover: '/images/videos/cruel-summer-live.jpg',
+                    thumbnail: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2U5MWU2MyIvPjx0ZXh0IHg9IjE1MCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Q3J1ZWwgU3VtbWVyIExpdmU8L3RleHQ+PC9zdmc+',
+                    views: 1200000,
+                    likes: 89000,
+                    comments: 2300,
+                    badge: 'HOT',
+                    url: 'https://player.bilibili.com/player.html?isOutside=true&aid=749723677&bvid=BV1MC4y1c7Kv&cid=1366886152&p=1',
+                    tags: ['Live', 'Eras Tour', 'Cruel Summer']
+                },
+                {
+                    id: 2,
+                    title: 'Midnights Album Review',
+                    description: '深度解析霉霉最新专辑，探索每首歌背后的故事。从创作灵感到音乐制作，全面了解 Midnights 的魅力。',
+                    cover: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzljMjdiMCIvPjx0ZXh0IHg9IjE1MCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+TWlkbmlnaHRzIFJldmlldzwvdGV4dD48L3N2Zz4=',
+                    thumbnail: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzljMjdiMCIvPjx0ZXh0IHg9IjE1MCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+TWlkbmlnaHRzIFJldmlldzwvdGV4dD48L3N2Zz4=',
+                    views: 856000,
+                    likes: 67000,
+                    comments: 1800,
+                    badge: 'NEW',
+                    url: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+                    tags: ['Review', 'Midnights', 'Analysis']
+                },
+                {
+                    id: 3,
+                    title: 'Eras Tour Behind the Scenes',
+                    description: '演唱会幕后花絮，了解舞台背后的精彩瞬间。从排练到演出，见证霉霉的敬业精神。',
+                    cover: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2ZmOTgwMCIvPjx0ZXh0IHg9IjE1MCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+RXJhcyBUb3VyIEJUUzwvdGV4dD48L3N2Zz4=',
+                    thumbnail: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2ZmOTgwMCIvPjx0ZXh0IHg9IjE1MCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+RXJhcyBUb3VyIEJUUzwvdGV4dD48L3N2Zz4=',
+                    views: 2100000,
+                    likes: 156000,
+                    comments: 4200,
+                    url: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+                    tags: ['Behind the Scenes', 'Eras Tour', 'Backstage']
+                }
+            ])
+
+            const latestMusic = ref([
+                {
+                    id: 1,
+                    title: 'Cruel Summer',
+                    artist: 'Taylor Swift',
+                    album: 'Lover',
+                    cover: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjZTkxZTYzIi8+PHRleHQgeD0iNDAiIHk9IjQwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Q1M8L3RleHQ+PC9zdmc+',
+                    duration: '3:28',
+                    durationSeconds: 208,
+                    url: '/audio/cruel-summer.mp3'
+                },
+                {
+                    id: 2,
+                    title: 'Anti-Hero',
+                    artist: 'Taylor Swift',
+                    album: 'Midnights',
+                    cover: '/images/music/anti-hero.jpeg',
+                    duration: '3:21',
+                    durationSeconds: 201,
+                    url: '/audio/anti-hero.mp3'
+                },
+                {
+                    id: 3,
+                    title: 'Cardigan',
+                    artist: 'Taylor Swift',
+                    album: 'Folklore',
+                    cover: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjZmY5ODAwIi8+PHRleHQgeD0iNDAiIHk9IjQwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Q0c8L3RleHQ+PC9zdmc+',
+                    duration: '3:59',
+                    durationSeconds: 239,
+                    url: '/audio/cardigan.mp3'
+                },
+                {
+                    id: 4,
+                    title: 'Shake It Off',
+                    artist: 'Taylor Swift',
+                    album: '1989',
+                    cover: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjMjE5NmYzIi8+PHRleHQgeD0iNDAiIHk9IjQwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+U0lPPC90ZXh0Pjwvc3ZnPg==',
+                    duration: '3:39',
+                    durationSeconds: 219,
+                    url: '/audio/shake-it-off.mp3'
+                }
+            ])
+
+            const communityPosts = ref([
+                {
+                    id: 1,
+                    author: 'Swiftie_Lover',
+                    avatar: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjZTkxZTYzIi8+PHRleHQgeD0iMjAiIHk9IjIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+U0w8L3RleHQ+PC9zdmc+',
+                    content: '刚刚看了Eras Tour的直播，霉霉的表演太震撼了！每一首歌都让我感动到哭，这就是为什么我爱她！💖✨',
+                    time: '2小时前',
+                    likes: 234,
+                    comments: 45,
+                    shares: 12,
+                    isLiked: false,
+                    tags: ['Eras Tour', 'Live', '感动'],
+                    image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2ZmOTgwMCIvPjx0ZXh0IHg9IjIwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+RXJhcyBUb3VyIExpdmU8L3RleHQ+PC9zdmc+'
+                },
+                {
+                    id: 2,
+                    author: 'Taylor_Fan_2024',
+                    avatar: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjOWMyN2IwIi8+PHRleHQgeD0iMjAiIHk9IjIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+VEY8L3RleHQ+PC9zdmc+',
+                    content: 'Midnights专辑循环播放中，每一首都太好听了！特别是Anti-Hero，歌词太戳心了！',
+                    time: '4小时前',
+                    likes: 156,
+                    comments: 23,
+                    shares: 8,
+                    isLiked: true,
+                    tags: ['Midnights', 'Anti-Hero', '循环播放']
+                }
+            ])
+
+            const latestNews = ref([
+                {
+                    id: 1,
+                    title: 'Taylor Swift宣布新专辑发行计划',
+                    summary: '霉霉在社交媒体上宣布了新的音乐计划，粉丝们期待不已...',
+                    image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iODAiIGZpbGw9IiNlOTFlNjMiLz48dGV4dCB4PSI2MCIgeT0iNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5OZXdzIDE8L3RleHQ+PC9zdmc+',
+                    time: '1天前',
+                    category: '音乐新闻'
+                },
+                {
+                    id: 2,
+                    title: 'Eras Tour票房突破10亿美元',
+                    summary: 'Taylor Swift的Eras Tour成为史上最成功的巡演之一...',
+                    image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iODAiIGZpbGw9IiM5YzI3YjAiLz48dGV4dCB4PSI2MCIgeT0iNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5OZXdzIDI8L3RleHQ+PC9zdmc+',
+                    time: '2天前',
+                    category: '巡演新闻'
+                }
+            ])
+
+            // 方法
+            const exploreMusic = () => {
+                router.push('/music')
             }
-            
-            // 显示音乐播放器
-            showMusicPlayer.value = true
-            
-            ElMessage.success(`正在播放: ${song.title}`)
-        }
 
-        const onTrackEnd = (track) => {
-            ElMessage.info(`歌曲播放完成: ${track.title}`)
-        }
-
-        const onVideoEnd = () => {
-            ElMessage.info('视频播放完成');
-            // 关闭视频播放器时暂停音乐播放
-            if (showMusicPlayer.value) {
-                showMusicPlayer.value = false;
-                ElMessage.info('已暂停音乐播放');
+            const joinCommunity = () => {
+                router.push('/community')
             }
-        }
 
-        const addToPlaylist = (song) => {
-            ElMessage.success(`已添加到播放列表: ${song.title}`)
-        }
-
-        const likeSong = (song) => {
-            ElMessage.success(`已收藏: ${song.title}`)
-        }
-
-        const handlePostAction = (command) => {
-            switch (command) {
-                case 'share':
-                    ElMessage.success('分享功能开发中...')
-                    break
-                case 'report':
-                    ElMessage.success('举报功能开发中...')
-                    break
+            const goToPage = (path) => {
+                router.push(path)
             }
-        }
 
-        const likePost = (post) => {
-            post.isLiked = !post.isLiked
-            post.likes += post.isLiked ? 1 : -1
-            ElMessage.success(post.isLiked ? '已点赞' : '已取消点赞')
-        }
+            const viewMore = (type) => {
+                switch (type) {
+                    case 'trending':
+                        router.push('/videos')
+                        break
+                    case 'music':
+                        router.push('/music')
+                        break
+                    case 'community':
+                        router.push('/community')
+                        break
+                    case 'news':
+                        router.push('/news')
+                        break
+                }
+            }
 
-        // const commentPost = (post) => {
-        //     ElMessage.success('评论功能开发中...')
-        // }
+            const viewDetail = (id) => {
+                // 假设 trendingContent 中的 item 是视频
+                const item = trendingContent.value.find(item => item.id === id);
+                if (item) {
+                    currentVideo.value = {
+                        id: item.id,
+                        title: item.title,
+                        cover: item.cover,
+                        url: item.url // 假设视频URL在 trendingContent 中
+                    };
+                    showVideoPlayer.value = true;
+                    ElMessage.success(`正在播放: ${item.title}`);
+                } else {
+                    // 如果 item 不是视频，则跳转到详情页
+                    router.push(`/detail/${id}`);
+                }
+            }
 
-        // const sharePost = (post) => {
-        //     ElMessage.success('分享功能开发中...')
-        // }
-        const commentPost = (post) => {
-            // 使用post参数
-            console.log('评论帖子:', post.id)
-            ElMessage.success(`评论功能开发中... (帖子ID: ${post.id})`)
-        }
+            const playMusic = (song) => {
+                // 创建专辑对象用于播放器
+                currentAlbum.value = {
+                    id: song.albumId || 1,
+                    name: song.album,
+                    year: song.year || '2024',
+                    songs: 1,
+                    cover: song.cover
+                }
+                
+                // 设置当前歌曲
+                currentSong.value = {
+                    id: song.id,
+                    title: song.title,
+                    artist: song.artist,
+                    album: song.album,
+                    cover: song.cover,
+                    duration: song.durationSeconds || 200,
+                    url: song.url
+                }
+                
+                // 显示音乐播放器
+                showMusicPlayer.value = true
+                
+                ElMessage.success(`正在播放: ${song.title}`)
+            }
 
-        const sharePost = (post) => {
-            // 使用post参数
-            console.log('分享帖子:', post.id)
-            ElMessage.success(`分享功能开发中... (帖子ID: ${post.id})`)
-        }
+            const onTrackEnd = (track) => {
+                ElMessage.info(`歌曲播放完成: ${track.title}`)
+            }
+
+            const onVideoEnd = () => {
+                ElMessage.info('视频播放完成');
+                // 关闭视频播放器时暂停音乐播放
+                if (showMusicPlayer.value) {
+                    showMusicPlayer.value = false;
+                    ElMessage.info('已暂停音乐播放');
+                }
+            }
+
+            const addToPlaylist = (song) => {
+                ElMessage.success(`已添加到播放列表: ${song.title}`)
+            }
+
+            const likeSong = (song) => {
+                ElMessage.success(`已收藏: ${song.title}`)
+            }
+
+            const handlePostAction = (command) => {
+                switch (command) {
+                    case 'share':
+                        ElMessage.success('分享功能开发中...')
+                        break
+                    case 'report':
+                        ElMessage.success('举报功能开发中...')
+                        break
+                }
+            }
+
+            const likePost = (post) => {
+                post.isLiked = !post.isLiked
+                post.likes += post.isLiked ? 1 : -1
+                ElMessage.success(post.isLiked ? '已点赞' : '已取消点赞')
+            }
+
+            // const commentPost = (post) => {
+            //     ElMessage.success('评论功能开发中...')
+            // }
+
+            // const sharePost = (post) => {
+            //     ElMessage.success('分享功能开发中...')
+            // }
+            const commentPost = (post) => {
+                // 使用post参数
+                console.log('评论帖子:', post.id)
+                ElMessage.success(`评论功能开发中... (帖子ID: ${post.id})`)
+            }
+
+            const sharePost = (post) => {
+                // 使用post参数
+                console.log('分享帖子:', post.id)
+                ElMessage.success(`分享功能开发中... (帖子ID: ${post.id})`)
+            }
 
 
 
-        const readNews = (news) => {
-            router.push(`/news/${news.id}`)
-        }
+            const readNews = (news) => {
+                router.push(`/news/${news.id}`)
+            }
 
-        return {
-            floatingNotes,
-            quickNavs,
-            trendingContent,
-            latestMusic,
-            communityPosts,
-            latestNews,
-            exploreMusic,
-            joinCommunity,
-            showMusicPlayer,
-            showVideoPlayer,
-            currentAlbum,
-            currentSong,
-            currentVideo,
-            goToPage,
-            viewMore,
-            viewDetail,
-            playMusic,
-            addToPlaylist,
-            likeSong,
-            handlePostAction,
-            likePost,
-            commentPost,
-            sharePost,
-            readNews,
-            onTrackEnd,
-            onVideoEnd
-        }
+            return {
+                floatingNotes,
+                quickNavs,
+                trendingContent,
+                latestMusic,
+                communityPosts,
+                latestNews,
+                exploreMusic,
+                joinCommunity,
+                showMusicPlayer,
+                showVideoPlayer,
+                currentAlbum,
+                currentSong,
+                currentVideo,
+                goToPage,
+                viewMore,
+                viewDetail,
+                playMusic,
+                addToPlaylist,
+                likeSong,
+                handlePostAction,
+                likePost,
+                commentPost,
+                sharePost,
+                readNews,
+                onTrackEnd,
+                onVideoEnd
+            }
     }
 }
 </script>

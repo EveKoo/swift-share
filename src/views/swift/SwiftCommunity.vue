@@ -81,7 +81,7 @@
 
 <script>
 import { ref, computed } from 'vue'
-import { useStore } from 'vuex'
+import { useUserStore } from '@/stores'
 import { Star, ChatDotRound, Share } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 
@@ -93,16 +93,16 @@ export default {
         Share
     },
     setup() {
-        const store = useStore()
+        const userStore = useUserStore()
         const newPost = ref('')
         
-        const userAvatar = computed(() => store.getters.userAvatar || 'https://via.placeholder.com/40x40/e91e63/ffffff?text=U')
+        const userAvatar = computed(() => userStore.userInfo?.avatar || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjZTkxZTYzIi8+PHRleHQgeD0iMjAiIHk9IjIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+VTwvdGV4dD48L3N2Zz4=')
         
         const posts = ref([
             {
                 id: 1,
                 author: 'Swiftie_Lover',
-                avatar: 'https://via.placeholder.com/40x40/e91e63/ffffff?text=SL',
+                avatar: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjZTkxZTYzIi8+PHRleHQgeD0iMjAiIHk9IjIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+U0w8L3RleHQ+PC9zdmc+',
                 content: '刚刚看了Eras Tour的直播，霉霉的表演太震撼了！每一首歌都让我感动到哭，这就是为什么我爱她！💕✨',
                 time: '2小时前',
                 likes: 234,
@@ -114,7 +114,7 @@ export default {
             {
                 id: 2,
                 author: 'Taylor_Fan_2024',
-                avatar: 'https://via.placeholder.com/40x40/9c27b0/ffffff?text=TF',
+                avatar: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjOWMyN2IwIi8+PHRleHQgeD0iMjAiIHk9IjIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+VEY8L3RleHQ+PC9zdmc+',
                 content: 'Midnights专辑循环播放中，每一首都太好听了！特别是Anti-Hero，歌词太戳心了！',
                 time: '4小时前',
                 likes: 156,
@@ -130,7 +130,7 @@ export default {
             
             const post = {
                 id: Date.now(),
-                author: store.getters.userName || '匿名用户',
+                author: userStore.userInfo?.username || '匿名用户',
                 avatar: userAvatar.value,
                 content: newPost.value,
                 time: '刚刚',

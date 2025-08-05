@@ -139,7 +139,7 @@ import {
 } from '@element-plus/icons-vue'
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
+import { useUserStore } from '@/stores'
 import { ElMessage } from 'element-plus'
 
 export default {
@@ -161,7 +161,7 @@ export default {
     emits: ['show-login', 'show-register'],
     setup(props, { emit }) {
         const router = useRouter()
-        const store = useStore()
+        const userStore = useUserStore()
         
         // 响应式数据
         const searchKeyword = ref('')
@@ -170,9 +170,9 @@ export default {
         const isMobile = ref(false)
         
         // 从store获取用户状态
-        const isLoggedIn = computed(() => store.getters.isLoggedIn)
-        const userAvatar = computed(() => store.getters.userAvatar)
-        const userName = computed(() => store.getters.userName)
+        const isLoggedIn = computed(() => userStore.isLoggedIn)
+        const userAvatar = computed(() => userStore.userInfo?.avatar || '')
+        const userName = computed(() => userStore.userInfo?.username || '')
 
         // 导航菜单配置
         const navItems = [
@@ -273,7 +273,7 @@ export default {
         }
 
         const logout = () => {
-            store.dispatch('logout')
+            userStore.logout()
             router.push('/')
             ElMessage.success('已退出登录')
         }

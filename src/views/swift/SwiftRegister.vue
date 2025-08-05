@@ -120,7 +120,7 @@
 import { ref, reactive } from 'vue'
 import { ChatDotRound, Message } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
-import { userApi } from '@/api/user'
+import { useUserStore } from '@/stores/user'
 
 export default {
     name: 'SwiftRegister',
@@ -130,48 +130,47 @@ export default {
     },
     emits: ['register-success', 'switch-to-login'],
     setup(props, { emit }) {
+        const userStore = useUserStore()
         const registerFormRef = ref(null)
-        const isLoading = ref(false)
         const agreeTerms = ref(false)
 
         const registerForm = reactive({
             username: '',
-            nickname: '',
             email: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            nickname: ''
         })
-
-        const validateConfirmPassword = (rule, value, callback) => {
-            if (value === '') {
-                callback(new Error('请再次输入密码'))
-            } else if (value !== registerForm.password) {
-                callback(new Error('两次输入密码不一致'))
-            } else {
-                callback()
-            }
-        }
 
         const registerRules = {
             username: [
                 { required: true, message: '请输入用户名', trigger: 'blur' },
-                { min: 3, max: 20, message: '用户名长度在3到20个字符', trigger: 'blur' },
-                { pattern: /^[a-zA-Z0-9_]+$/, message: '用户名只能包含字母、数字和下划线', trigger: 'blur' }
+                { min: 3, max: 20, message: '用户名长度在3到20个字符', trigger: 'blur' }
+            ],
+            email: [
+                { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+                { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }
+            ],
+            password: [
+                { required: true, message: '请输入密码', trigger: 'blur' },
+                { min: 6, message: '密码长度不能少于6位', trigger: 'blur' }
+            ],
+            confirmPassword: [
+                { required: true, message: '请确认密码', trigger: 'blur' },
+                {
+                    validator: (rule, value, callback) => {
+                        if (value !== registerForm.password) {
+                            callback(new Error('两次输入密码不一致'))
+                        } else {
+                            callback()
+                        }
+                    },
+                    trigger: 'blur'
+                }
             ],
             nickname: [
                 { required: true, message: '请输入昵称', trigger: 'blur' },
                 { min: 2, max: 20, message: '昵称长度在2到20个字符', trigger: 'blur' }
-            ],
-            email: [
-                { required: true, message: '请输入邮箱', trigger: 'blur' },
-                { type: 'email', message: '请输入正确的邮箱格式', trigger: 'blur' }
-            ],
-            password: [
-                { required: true, message: '请输入密码', trigger: 'blur' },
-                { min: 6, max: 20, message: '密码长度在6到20个字符', trigger: 'blur' }
-            ],
-            confirmPassword: [
-                { required: true, validator: validateConfirmPassword, trigger: 'blur' }
             ]
         }
 
@@ -185,23 +184,14 @@ export default {
 
             try {
                 await registerFormRef.value.validate()
-                isLoading.value = true
-
-                // eslint-disable-next-line no-unused-vars
-                const { confirmPassword, ...registerData } = registerForm
-                const response = await userApi.register(registerData)
                 
-                if (response.code === 200) {
-                    ElMessage.success('注册成功！')
-                    emit('register-success', response.data)
-                } else {
-                    ElMessage.error(response.message || '注册失败')
+                const result = await userStore.register(registerForm)
+                
+                if (result.success) {
+                    emit('register-success')
                 }
             } catch (error) {
-                console.error('注册错误:', error)
-                ElMessage.error(error.message || '注册失败，请检查输入信息')
-            } finally {
-                isLoading.value = false
+                console.error('注册验证失败:', error)
             }
         }
 
@@ -213,8 +203,8 @@ export default {
             registerFormRef,
             registerForm,
             registerRules,
-            isLoading,
             agreeTerms,
+            isLoading: userStore.loading,
             handleRegister,
             goToLogin
         }

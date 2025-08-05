@@ -175,21 +175,21 @@ export default {
             {
                 id: 1,
                 title: 'Anti-Hero MV',
-                thumbnail: 'https://via.placeholder.com/160x90/e91e63/ffffff?text=Anti-Hero',
+                thumbnail: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjkwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxNjAiIGhlaWdodD0iOTAiIGZpbGw9IiNlOTFlNjMiLz48dGV4dCB4PSI4MCIgeT0iNDUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5BbnRpLUhlcm88L3RleHQ+PC9zdmc+',
                 views: 15000000,
                 url: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4'
             },
             {
                 id: 2,
                 title: 'Cruel Summer Live',
-                thumbnail: 'https://via.placeholder.com/160x90/9c27b0/ffffff?text=Cruel+Summer',
+                thumbnail: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjkwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxNjAiIGhlaWdodD0iOTAiIGZpbGw9IiM5YzI3YjAiLz48dGV4dCB4PSI4MCIgeT0iNDUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5DcnVlbCBTdW1tZXI8L3RleHQ+PC9zdmc+',
                 views: 8500000,
                 url: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4'
             },
             {
                 id: 3,
                 title: 'Cardigan MV',
-                thumbnail: 'https://via.placeholder.com/160x90/ff9800/ffffff?text=Cardigan',
+                thumbnail: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjkwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxNjAiIGhlaWdodD0iOTAiIGZpbGw9IiNmZjk4MDAiLz48dGV4dCB4PSI4MCIgeT0iNDUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5DYXJkaWdhbjwvdGV4dD48L3N2Zz4=',
                 views: 12000000,
                 url: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4'
             }
@@ -205,10 +205,16 @@ export default {
             if (!props.video || !props.video.url) {
                 return false
             }
-            // 检查 URL 是否包含常见的嵌入平台域名
-            const embeddedDomains = ['youtube.com', 'vimeo.com', 'dailymotion.com', 'facebook.com', 'bilibili.com']
-            const url = new URL(props.video.url)
-            return embeddedDomains.some(domain => url.hostname.includes(domain))
+            try {
+                // 检查 URL 是否包含常见的嵌入平台域名
+                const embeddedDomains = ['youtube.com', 'vimeo.com', 'dailymotion.com', 'facebook.com', 'bilibili.com']
+                const url = new URL(props.video.url)
+                return embeddedDomains.some(domain => url.hostname.includes(domain))
+            } catch (error) {
+                // 如果URL无效，返回false
+                console.warn('Invalid URL:', props.video.url, error)
+                return false
+            }
         })
 
         // 格式化数字
@@ -309,7 +315,14 @@ export default {
         watch(() => props.video, (newVideo) => {
             if (newVideo) {
                 if (isEmbeddedVideo.value) {
-                    currentIframeSrc.value = newVideo.url
+                    try {
+                        // 验证URL是否有效
+                        new URL(newVideo.url)
+                        currentIframeSrc.value = newVideo.url
+                    } catch (error) {
+                        console.warn('Invalid URL in video watch:', newVideo.url, error)
+                        currentIframeSrc.value = ''
+                    }
                 } else if (videoRef.value) {
                     videoRef.value.currentTime = 0
                 }
@@ -323,7 +336,14 @@ export default {
                 currentIframeSrc.value = ''
             } else if (newVal && isEmbeddedVideo.value && props.video?.url) {
                 // 当对话框打开时，设置 iframe src
-                currentIframeSrc.value = props.video.url
+                try {
+                    // 验证URL是否有效
+                    new URL(props.video.url)
+                    currentIframeSrc.value = props.video.url
+                } catch (error) {
+                    console.warn('Invalid URL in watch:', props.video.url, error)
+                    currentIframeSrc.value = ''
+                }
             }
         })
 
