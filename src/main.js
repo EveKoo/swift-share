@@ -8,6 +8,7 @@ import axios from 'axios'
 import router from './router'
 import store from './store'
 import './assets/css/base.css'
+import './assets/css/swift-theme.css'
 
 
 const app = createApp(App)

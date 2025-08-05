@@ -1,0 +1,296 @@
+/* SwiftShare主题色彩变量 */
+:root {
+    /* 主色调 */
+    --swift-pink: #e91e63;
+    --swift-light-pink: #fce4ec;
+    --swift-dark-pink: #ad1457;
+    --swift-purple: #9c27b0;
+    --swift-gold: #ffd700;
+    --swift-silver: #c0c0c0;
+    --swift-blue: #2196f3;
+    --swift-orange: #ff9800;
+    --swift-red: #f44336;
+
+    /* 背景色 */
+    --swift-bg-primary: #ffffff;
+    --swift-bg-secondary: #f8f9fa;
+    --swift-bg-gradient: linear-gradient(135deg, var(--swift-light-pink) 0%, #f8bbd9 100%);
+
+    /* 文字色 */
+    --swift-text-primary: #333333;
+    --swift-text-secondary: #666666;
+    --swift-text-muted: #999999;
+
+    /* 边框色 */
+    --swift-border-light: #e0e0e0;
+    --swift-border-medium: #bdbdbd;
+
+    /* 阴影 */
+    --swift-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --swift-shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.15);
+    --swift-shadow-heavy: 0 8px 30px rgba(233, 30, 99, 0.2);
+
+    /* 圆角 */
+    --swift-radius-small: 8px;
+    --swift-radius-medium: 12px;
+    --swift-radius-large: 16px;
+    --swift-radius-round: 50%;
+
+    /* 间距 */
+    --swift-spacing-xs: 4px;
+    --swift-spacing-sm: 8px;
+    --swift-spacing-md: 16px;
+    --swift-spacing-lg: 24px;
+    --swift-spacing-xl: 32px;
+
+    /* 字体 */
+    --swift-font-family: 'HarmonyOS Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --swift-font-size-xs: 0.75rem;
+    --swift-font-size-sm: 0.875rem;
+    --swift-font-size-md: 1rem;
+    --swift-font-size-lg: 1.125rem;
+    --swift-font-size-xl: 1.25rem;
+    --swift-font-size-2xl: 1.5rem;
+    --swift-font-size-3xl: 1.875rem;
+    --swift-font-size-4xl: 2.25rem;
+}
+
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--swift-font-family);
+    background: var(--swift-bg-gradient);
+    color: var(--swift-text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+    min-height: 100vh;
+}
+
+/* 通用工具类 */
+.swift-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--swift-spacing-md);
+}
+
+.swift-text-center {
+    text-align: center;
+}
+
+.swift-text-left {
+    text-align: left;
+}
+
+.swift-text-right {
+    text-align: right;
+}
+
+.swift-mt-xs {
+    margin-top: var(--swift-spacing-xs);
+}
+
+.swift-mt-sm {
+    margin-top: var(--swift-spacing-sm);
+}
+
+.swift-mt-md {
+    margin-top: var(--swift-spacing-md);
+}
+
+.swift-mt-lg {
+    margin-top: var(--swift-spacing-lg);
+}
+
+.swift-mt-xl {
+    margin-top: var(--swift-spacing-xl);
+}
+
+.swift-mb-xs {
+    margin-bottom: var(--swift-spacing-xs);
+}
+
+.swift-mb-sm {
+    margin-bottom: var(--swift-spacing-sm);
+}
+
+.swift-mb-md {
+    margin-bottom: var(--swift-spacing-md);
+}
+
+.swift-mb-lg {
+    margin-bottom: var(--swift-spacing-lg);
+}
+
+.swift-mb-xl {
+    margin-bottom: var(--swift-spacing-xl);
+}
+
+.swift-p-xs {
+    padding: var(--swift-spacing-xs);
+}
+
+.swift-p-sm {
+    padding: var(--swift-spacing-sm);
+}
+
+.swift-p-md {
+    padding: var(--swift-spacing-md);
+}
+
+.swift-p-lg {
+    padding: var(--swift-spacing-lg);
+}
+
+.swift-p-xl {
+    padding: var(--swift-spacing-xl);
+}
+
+/* 动画类 */
+.swift-fade-in {
+    animation: swiftFadeIn 0.3s ease-out;
+}
+
+.swift-fade-out {
+    animation: swiftFadeOut 0.3s ease-out;
+}
+
+.swift-slide-up {
+    animation: swiftSlideUp 0.3s ease-out;
+}
+
+.swift-slide-down {
+    animation: swiftSlideDown 0.3s ease-out;
+}
+
+.swift-bounce {
+    animation: swiftBounce 1s infinite;
+}
+
+/* 动画定义 */
+@keyframes swiftFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes swiftFadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+@keyframes swiftSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes swiftSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes swiftBounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Element Plus 主题定制 */
+.el-button--primary {
+    background: var(--swift-pink);
+    border-color: var(--swift-pink);
+}
+
+.el-button--primary:hover {
+    background: var(--swift-dark-pink);
+    border-color: var(--swift-dark-pink);
+}
+
+.el-input__wrapper {
+    border-radius: var(--swift-radius-medium);
+}
+
+.el-card {
+    border-radius: var(--swift-radius-large);
+    border: none;
+    box-shadow: var(--swift-shadow-light);
+}
+
+.el-card:hover {
+    box-shadow: var(--swift-shadow-medium);
+}
+
+/* 响应式断点 */
+@media (max-width: 1200px) {
+    .swift-container {
+        max-width: 960px;
+    }
+}
+
+@media (max-width: 992px) {
+    .swift-container {
+        max-width: 720px;
+    }
+}
+
+@media (max-width: 768px) {
+    .swift-container {
+        max-width: 540px;
+        padding: 0 var(--swift-spacing-sm);
+    }
+}
+
+@media (max-width: 576px) {
+    .swift-container {
+        max-width: 100%;
+        padding: 0 var(--swift-spacing-sm);
+    }
+}
