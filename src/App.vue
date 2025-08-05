@@ -33,21 +33,14 @@
     <el-dialog
       v-model="showRegister"
       title="注册 SwiftShare"
-      width="400px"
+      width="500px"
       :close-on-click-modal="false"
       :close-on-press-escape="false"
     >
-      <div class="register-placeholder">
-        <el-result
-          icon="info"
-          title="注册功能开发中"
-          sub-title="敬请期待，即将上线"
-        >
-          <template #extra>
-            <el-button type="primary" @click="showRegister = false">知道了</el-button>
-          </template>
-        </el-result>
-      </div>
+      <SwiftRegister 
+        @register-success="handleRegisterSuccess"
+        @switch-to-login="switchToLogin"
+      />
     </el-dialog>
 
         <!-- 全局加载状态 -->
@@ -74,6 +67,7 @@ import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import SwiftHeader from '@/views/swift/SwiftHeader.vue'
 import SwiftLogin from '@/views/swift/SwiftLogin.vue'
+import SwiftRegister from '@/views/swift/SwiftRegister.vue'
 import NotificationCenter from '@/components/NotificationCenter.vue'
 import { ElMessage } from 'element-plus'
 
@@ -82,6 +76,7 @@ export default {
   components: {
     SwiftHeader,
     SwiftLogin,
+    SwiftRegister,
     NotificationCenter
   },
       setup() {
@@ -115,6 +110,19 @@ export default {
             ElMessage.success('登录成功！欢迎来到 SwiftShare')
         }
 
+        // 处理注册成功
+        const handleRegisterSuccess = (userData) => {
+            showRegister.value = false
+            store.dispatch('login', userData)
+            ElMessage.success('注册成功！欢迎来到 SwiftShare')
+        }
+
+        // 切换到登录
+        const switchToLogin = () => {
+            showRegister.value = false
+            showLogin.value = true
+        }
+
     // 监听滚动事件
     const handleScroll = () => {
       scrollY.value = window.scrollY
@@ -138,7 +146,9 @@ export default {
             cachedPages,
             showLoginModal,
             showRegisterModal,
-            handleLoginSuccess
+            handleLoginSuccess,
+            handleRegisterSuccess,
+            switchToLogin
         }
   }
 }
