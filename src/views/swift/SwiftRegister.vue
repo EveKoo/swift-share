@@ -135,11 +135,11 @@ export default {
         const agreeTerms = ref(false)
 
         const registerForm = reactive({
-            username: '',
-            email: '',
-            password: '',
-            confirmPassword: '',
-            nickname: ''
+            username: 'EveKoo',
+            email: '123@qq.com',
+            password: '123456',
+            confirmPassword: '123456',
+            nickname: 'xiaoyu'
         })
 
         const registerRules = {

@@ -294,3 +294,88 @@ body {
         padding: 0 var(--swift-spacing-sm);
     }
 }
+
+/* 深色主题 */
+[data-theme="dark"] {
+    /* 主色调 */
+    --swift-pink: #ff6b9d;
+    --swift-light-pink: #2d1b2d;
+    --swift-dark-pink: #ff4d7d;
+    --swift-purple: #b388ff;
+    --swift-gold: #ffd54f;
+    --swift-silver: #e0e0e0;
+    --swift-blue: #64b5f6;
+    --swift-orange: #ffb74d;
+    --swift-red: #ef5350;
+
+    /* 背景色 */
+    --swift-bg-primary: #1a1a1a;
+    --swift-bg-secondary: #2d2d2d;
+    --swift-bg-gradient: linear-gradient(135deg, #2d1b2d 0%, #1a1a1a 100%);
+
+    /* 文字色 */
+    --swift-text-primary: #ffffff;
+    --swift-text-secondary: #b0b0b0;
+    --swift-text-muted: #808080;
+
+    /* 边框色 */
+    --swift-border-light: #404040;
+    --swift-border-medium: #606060;
+
+    /* 阴影 */
+    --swift-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --swift-shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.4);
+    --swift-shadow-heavy: 0 8px 30px rgba(255, 107, 157, 0.3);
+}
+
+/* 深色主题下的Element Plus组件样式 */
+[data-theme="dark"] .el-button--primary {
+    background: var(--swift-pink);
+    border-color: var(--swift-pink);
+}
+
+[data-theme="dark"] .el-button--primary:hover {
+    background: var(--swift-dark-pink);
+    border-color: var(--swift-dark-pink);
+}
+
+[data-theme="dark"] .el-input__wrapper {
+    background: var(--swift-bg-secondary);
+    border-color: var(--swift-border-light);
+}
+
+[data-theme="dark"] .el-input__inner {
+    color: var(--swift-text-primary);
+}
+
+[data-theme="dark"] .el-card {
+    background: var(--swift-bg-secondary);
+    border-color: var(--swift-border-light);
+}
+
+[data-theme="dark"] .el-dialog {
+    background: var(--swift-bg-secondary);
+}
+
+[data-theme="dark"] .el-dialog__header {
+    background: linear-gradient(135deg, var(--swift-pink) 0%, var(--swift-purple) 100%);
+}
+
+[data-theme="dark"] .el-dropdown-menu {
+    background: var(--swift-bg-secondary);
+    border-color: var(--swift-border-light);
+}
+
+[data-theme="dark"] .el-dropdown-menu__item {
+    color: var(--swift-text-primary);
+}
+
+[data-theme="dark"] .el-dropdown-menu__item:hover {
+    background: var(--swift-bg-primary);
+}
+
+/* 深色主题下的body背景 */
+[data-theme="dark"] body {
+    background: var(--swift-bg-gradient);
+    color: var(--swift-text-primary);
+}

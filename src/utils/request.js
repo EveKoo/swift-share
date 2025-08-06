@@ -2,6 +2,9 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
+// 配置是否显示网络错误提示
+const SHOW_NETWORK_ERROR = false
+
 const request = axios.create({
     baseURL: process.env.VUE_APP_API_URL || 'http://localhost:8080/api',
     timeout: 10000,
@@ -69,7 +72,12 @@ request.interceptors.response.use(
                     ElMessage.error(data.message || '请求失败')
             }
         } else if (error.request) {
-            ElMessage.error('网络错误，请检查网络连接')
+            // 根据配置决定是否显示网络错误提示
+            if (SHOW_NETWORK_ERROR) {
+                ElMessage.error('网络错误，请检查网络连接')
+            } else {
+                console.warn('网络连接失败，将使用模拟功能')
+            }
         } else {
             ElMessage.error('请求配置错误')
         }

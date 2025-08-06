@@ -1,6 +1,6 @@
 {
   "name": "swift-share",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A video sharing platform for Swifties",
   "private": true,
   "scripts": {

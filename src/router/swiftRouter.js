@@ -21,7 +21,9 @@ const swiftRoutes = [
         meta: {
             title: 'SwiftShare - 霉霉粉丝社区',
             requestAuth: false,
-            keepAlive: true
+            keepAlive: true,
+            analytics: true,
+            description: '欢迎来到霉霉粉丝社区'
         }
     },
     {
@@ -31,7 +33,9 @@ const swiftRoutes = [
         meta: {
             title: '音乐库 - SwiftShare',
             requestAuth: false,
-            keepAlive: true
+            keepAlive: true,
+            analytics: true,
+            description: '探索霉霉的所有音乐作品'
         }
     },
     {
@@ -41,7 +45,9 @@ const swiftRoutes = [
         meta: {
             title: '视频库 - SwiftShare',
             requestAuth: false,
-            keepAlive: true
+            keepAlive: true,
+            analytics: true,
+            description: '观看MV、演唱会、采访等精彩视频'
         }
     },
     {
@@ -51,7 +57,9 @@ const swiftRoutes = [
         meta: {
             title: 'Swiftie社区 - SwiftShare',
             requestAuth: false,
-            keepAlive: true
+            keepAlive: true,
+            analytics: true,
+            description: '与其他Swiftie交流分享'
         }
     },
     {
@@ -61,7 +69,9 @@ const swiftRoutes = [
         meta: {
             title: '霉霉资讯 - SwiftShare',
             requestAuth: false,
-            keepAlive: true
+            keepAlive: true,
+            analytics: true,
+            description: '获取霉霉最新动态和资讯'
         }
     },
     {
@@ -71,7 +81,10 @@ const swiftRoutes = [
         meta: {
             title: '个人中心 - SwiftShare',
             requestAuth: true,
-            keepAlive: false
+            keepAlive: false,
+            analytics: true,
+            description: '管理个人信息和设置',
+            roles: ['user', 'admin']
         }
     },
     {
@@ -81,7 +94,10 @@ const swiftRoutes = [
         meta: {
             title: '上传内容 - SwiftShare',
             requestAuth: true,
-            keepAlive: false
+            keepAlive: false,
+            analytics: true,
+            description: '上传音乐、视频等内容',
+            roles: ['user', 'admin']
         }
     },
     {
@@ -91,7 +107,9 @@ const swiftRoutes = [
         meta: {
             title: '内容详情 - SwiftShare',
             requestAuth: false,
-            keepAlive: false
+            keepAlive: false,
+            analytics: true,
+            description: '查看内容详细信息'
         },
         props: true
     },
@@ -102,7 +120,9 @@ const swiftRoutes = [
         meta: {
             title: '搜索 - SwiftShare',
             requestAuth: false,
-            keepAlive: false
+            keepAlive: false,
+            analytics: true,
+            description: '搜索霉霉相关内容'
         },
         props: route => ({
             keyword: route.query.keyword,
@@ -116,7 +136,9 @@ const swiftRoutes = [
         meta: {
             title: '登录 - SwiftShare',
             requestAuth: false,
-            keepAlive: false
+            keepAlive: false,
+            analytics: false,
+            description: '登录到SwiftShare'
         }
     },
     {
@@ -126,9 +148,12 @@ const swiftRoutes = [
         meta: {
             title: '注册 - SwiftShare',
             requestAuth: false,
-            keepAlive: false
+            keepAlive: false,
+            analytics: false,
+            description: '注册SwiftShare账号'
         }
-    }
+    },
+
 ]
 
 // 直接导出路由配置，不创建router实例

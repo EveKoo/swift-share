@@ -61,6 +61,22 @@
 
             <!-- 用户区域 -->
             <div class="swift-user">
+                <!-- 主题切换按钮 -->
+                <el-button 
+                    @click="appStore.toggleTheme"
+                    class="theme-toggle-btn"
+                    :title="appStore.isDarkMode ? '切换到浅色模式' : '切换到深色模式'"
+                >
+                    <el-icon v-if="appStore.isDarkMode">☀️</el-icon>
+                    <el-icon v-else>🌙</el-icon>
+                </el-button>
+                
+                <!-- 角色显示 -->
+                <div v-if="isLoggedIn" class="role-badge" :class="userRole">
+                    <el-icon><UserFilled /></el-icon>
+                    <span>{{ getRoleDisplayName(userRole) }}</span>
+                </div>
+                
                 <template v-if="isLoggedIn">
                     <el-dropdown @command="handleUserCommand" trigger="click">
                         <div class="user-avatar">
@@ -135,11 +151,13 @@ import {
     Upload, 
     Star, 
     SwitchButton,
-    CircleCloseFilled 
+    CircleCloseFilled,
+    UserFilled
 } from '@element-plus/icons-vue'
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores'
+import { useAppStore } from '@/stores/app'
 import { ElMessage } from 'element-plus'
 
 export default {
@@ -150,7 +168,8 @@ export default {
         Upload,
         Star,
         SwitchButton,
-        CircleCloseFilled
+        CircleCloseFilled,
+        UserFilled
     },
     props: {
         isFixed: {
@@ -162,6 +181,7 @@ export default {
     setup(props, { emit }) {
         const router = useRouter()
         const userStore = useUserStore()
+        const appStore = useAppStore()
         
         // 响应式数据
         const searchKeyword = ref('')
@@ -173,6 +193,7 @@ export default {
         const isLoggedIn = computed(() => userStore.isLoggedIn)
         const userAvatar = computed(() => userStore.userInfo?.avatar || '')
         const userName = computed(() => userStore.userInfo?.username || '')
+        const userRole = computed(() => userStore.userInfo?.role || 'user')
 
         // 导航菜单配置
         const navItems = [
@@ -286,6 +307,16 @@ export default {
             isMobileMenuOpen.value = false
         }
 
+        const getRoleDisplayName = (role) => {
+            switch (role) {
+                case 'admin':
+                    return '管理员'
+                case 'moderator':
+                    return '版主'
+                default:
+                    return '用户'
+            }
+        }
 
 
         const checkMobile = () => {
@@ -324,7 +355,10 @@ export default {
             showRegister,
             logout,
             toggleMobileMenu,
-            closeMobileMenu
+            closeMobileMenu,
+            userRole,
+            getRoleDisplayName,
+            appStore
         }
     }
 }
@@ -564,6 +598,48 @@ export default {
 .register-btn:hover {
     background: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
+}
+
+.theme-toggle-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 20px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.theme-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.role-badge {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    gap: 6px;
+}
+
+.role-badge.admin {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.role-badge.moderator {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .mobile-menu-btn {

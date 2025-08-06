@@ -61,6 +61,18 @@
 
     <!-- 通知中心 -->
     <NotificationCenter />
+    
+    <!-- 全局错误处理 -->
+    <div v-if="appStore.error" class="global-error">
+      <el-alert
+        :title="appStore.error.title"
+        :description="appStore.error.message"
+        type="error"
+        :closable="true"
+        @close="appStore.clearError"
+        show-icon
+      />
+    </div>
   </div>
 </template>
 
@@ -304,11 +316,23 @@ body {
   }
 }
 
+/* 全局错误处理 */
+.global-error {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  max-width: 500px;
+  width: 90%;
+}
+
 /* 打印样式 */
 @media print {
   .swift-header,
   .el-backtop,
-  .global-loading {
+  .global-loading,
+  .global-error {
     display: none !important;
   }
   

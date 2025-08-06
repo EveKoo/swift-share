@@ -204,6 +204,8 @@
                         </div>
                     </div>
                 </section>
+
+
             </div>
         </div>
 
@@ -239,6 +241,7 @@ import { ElMessage } from 'element-plus'
 import MusicPlayer from '@/components/MusicPlayer.vue'
 import VideoPlayer from '@/components/VideoPlayer.vue'
 
+
 export default {
     name: 'SwiftHome',
     components: {
@@ -249,7 +252,8 @@ export default {
         ChatDotRound,
         Share,
         MusicPlayer,
-        VideoPlayer
+        VideoPlayer,
+
     },
     setup() {
         const router = useRouter()
@@ -1173,6 +1177,17 @@ export default {
     
     .news-image {
         width: 100%;
+    }
+    
+
+    
+    .section-subtitle {
+        color: var(--swift-text-secondary);
+        font-size: 0.9rem;
+        margin-top: 4px;
+    }
+    
+    .banner {
         height: 200px;
     }
     

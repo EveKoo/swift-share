@@ -9,6 +9,7 @@ export const useAppStore = defineStore('app', () => {
     const notifications = ref([])
     const loading = ref(false)
     const loadingText = ref('加载中...')
+    const error = ref(null)
     const isMobile = ref(false)
     const windowSize = ref({
         width: window.innerWidth,
@@ -110,6 +111,20 @@ export const useAppStore = defineStore('app', () => {
         loadingText.value = '加载中...'
     }
 
+    // 错误处理
+    const setError = (errorData) => {
+        error.value = {
+            title: errorData.title || '错误',
+            message: errorData.message || '发生未知错误',
+            type: errorData.type || 'error',
+            timestamp: new Date().toISOString()
+        }
+    }
+
+    const clearError = () => {
+        error.value = null
+    }
+
     // 响应式管理
     const updateWindowSize = () => {
         windowSize.value = {
@@ -200,6 +215,11 @@ export const useAppStore = defineStore('app', () => {
         // 加载状态管理
         showLoading,
         hideLoading,
+
+        // 错误处理
+        error,
+        setError,
+        clearError,
 
         // 响应式管理
         updateWindowSize,
